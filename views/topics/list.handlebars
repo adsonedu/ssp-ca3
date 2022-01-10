@@ -1,18 +1,20 @@
 <table className="table table-hover">
     <thead>
     <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Surname</th>
-        <th scope="col">E-mail</th>
+        <th scope="col">Tittle</th>
+        <th scope="col">Content</th>
+        <th scope="col">User</th>
+        <th scope="col">Subject</th>
         <th scope="col">Actions</th>
     </tr>
     </thead>
     <tbody>
-    {{#each users}}
+    {{#each topics}}
         <tr>
-            <td>{{name}}</td>
-            <td>{{age}}</td>
-            <td>{{email}}</td>
+            <td>{{tittle}}</td>
+            <td>{{content}}</td>
+            <td>{{user}}</td>
+            <td>{{subject}}</td>
             <td>
                 <div class="row">
                     <div class="col-2">

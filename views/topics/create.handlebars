@@ -1,0 +1,17 @@
+<form>
+    <div class="mb-3">
+        <label for="tittle" class="form-label">Tittle</label>
+        <input type="text" class="form-control" id="tittle" name="tittle" required>
+    </div>
+    <div class="mb-3">
+        <label for="content" class="form-label">Content</label>
+        <textarea class="form-control" id="content" rows="3" name="content"></textarea>
+    </div>
+    <select class="form-select" name="subject" required>
+        <option selected>Choose one</option>
+        {{#each topics}}
+            <option value="{{subjectId}}">{{subject}}</option>
+        {{/each}}
+    </select>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
