@@ -1,0 +1,24 @@
+{
+  "name": "ssp-ca3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.1",
+    "express": "^4.17.2",
+    "express-handlebars": "^6.0.2",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.12.5"
+  },
+  "devDependencies": {
+    "handlebars": "^4.5.0",
+    "sequelize-cli": "^6.3.0"
+  }
+}
