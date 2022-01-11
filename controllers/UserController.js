@@ -4,6 +4,14 @@ const userController = User(db.sequelize, db.Sequelize);
 
 const createUser = async (req, res) => {
     try {
+        const password = req.body.password
+
+        const bcrypt = require('bcryptjs');
+        const salt = bcrypt.genSaltSync(10);
+        let hash = bcrypt.hashSync(password, salt);
+
+        req.body.password = hash;
+
         const user = await userController.create(req.body);
         return res.redirect('/users');
     } catch (error) {
