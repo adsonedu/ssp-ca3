@@ -5,7 +5,7 @@ const userController = User(db.sequelize, db.Sequelize);
 const createUser = async (req, res) => {
     try {
         const user = await userController.create(req.body);
-        return res.redirect('/');
+        return res.redirect('/users');
     } catch (error) {
         return res.status(500).json({ error: error.message })
     }
@@ -13,7 +13,7 @@ const createUser = async (req, res) => {
 
 const getAllUsers = async (req, res) => {
     try {
-        const users = await userController.findAll({});
+        const users = await userController.findAll();
         const object = {
             mapUser: users.map(data => {
                 return {
@@ -24,7 +24,7 @@ const getAllUsers = async (req, res) => {
                 }
             })
         }
-        return res.render('./users/list', {user: object.mapUser});
+        return res.render('./users/list', {users: object.mapUser});
     } catch (error) {
         return res.status(500).send(error.message);
     }
@@ -38,7 +38,7 @@ const getUserById = async (req, res) => {
         let users = [];
         users.push(user.dataValues);
         const object = {
-            mapUser: user.map(data => {
+            mapUser: users.map(data => {
                 return {
                     id: data.id,
                     name: data.name,
@@ -99,10 +99,19 @@ const deleteUser = async (req, res) => {
     }
 };
 
+const registerUser = async (req, res) => {
+    try {
+        return res.render('./register', {});
+    } catch (error) {
+        return res.status(500).send(error.message);
+    }
+}
+
 module.exports = {
     createUser,
     getAllUsers,
     getUserById,
     updateUser,
-    deleteUser
+    deleteUser,
+    registerUser,
 }

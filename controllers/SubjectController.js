@@ -2,6 +2,14 @@ const Subject = require('../models/subject');
 const db = require('../database/database');
 const subjectController = Subject(db.sequelize, db.Sequelize);
 
+const newSubject = async (req, res) => {
+    try {
+        return res.render('./subjects/create');
+    } catch (error) {
+        return res.status(500).send(error.message);
+    }
+}
+
 const createSubject = async (req, res) => {
     try {
         const subject = await subjectController.create(req.body);
@@ -23,7 +31,7 @@ const getAllSubjects = async (req, res) => {
                 }
             })
         }
-        return res.render('./subjects/list', {subject: object.mapSubject});
+        return res.render('./subjects/list', {subjects: object.mapSubject});
     } catch (error) {
         return res.status(500).send(error.message);
     }
@@ -97,6 +105,7 @@ const deleteSubject = async (req, res) => {
 };
 
 module.exports = {
+    newSubject,
     createSubject,
     getAllSubjects,
     getSubjectById,

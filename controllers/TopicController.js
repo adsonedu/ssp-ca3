@@ -4,6 +4,15 @@ const topicController = Topic(db.sequelize, db.Sequelize);
 const subjectController = require('../controllers/SubjectController');
 const userController = require('../controllers/UserController');
 
+const newTopic = async (req, res) => {
+    try {
+        const subjects = subjectController.getAllSubjects(req, res);
+        return res.render('./topics/create', {subjects: subjects});
+    } catch (error) {
+        return res.status(500).send(error.message);
+    }
+}
+
 const createTopic = async (req, res) => {
     try {
         const topic = await topicController.create(req.body);
@@ -27,7 +36,7 @@ const getAllTopics = async (req, res) => {
                 }
             })
         }
-        return res.render('./topics/list', {topic: object.mapTopic});
+        return res.render('./topics/list', {topics: object.mapTopic});
     } catch (error) {
         return res.status(500).send(error.message);
     }
@@ -105,6 +114,7 @@ const deleteTopic = async (req, res) => {
 };
 
 module.exports = {
+    newTopic,
     createTopic,
     getAllTopics,
     getTopicById,

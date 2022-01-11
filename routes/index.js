@@ -5,22 +5,29 @@ const topic = require('../controllers/TopicController');
 
 const router = Router();
 
+router.get("/", function (req, res) {
+    res.render('login');
+});
+
 router.get('/users', user.getAllUsers)
 router.post('/users', user.createUser)
-router.get('/users/:id', user.getUserById)
-router.put('/users/:id', user.updateUser)
-router.delete('/users/:id', user.deleteUser)
+router.get('/users/register', user.registerUser)
+router.get('/users/show/:id', user.getUserById)
+router.get('/users/edit/:id', user.updateUser)
+router.get('/users/delete/:id', user.deleteUser)
 
-router.get('/subjects', subject.getAllUsers)
-router.post('/subjects', subject.createUser)
-router.get('/subjects/:id', subject.getUserById)
-router.put('/subjects/:id', subject.updateUser)
-router.delete('/subjects/:id', subject.deleteUser)
+router.get('/subjects', subject.getAllSubjects)
+router.get('/subjects/create', subject.newSubject)
+router.post('/subjects/create', subject.createSubject)
+router.get('/subjects/show/:id', subject.getSubjectById)
+router.get('/subjects/edit/:id', subject.updateSubject)
+router.get('/subjects/delete/:id', subject.deleteSubject)
 
-router.get('/topics', topic.getAllUsers)
-router.post('/topics', topic.createUser)
-router.get('/topics/:id', topic.getUserById)
-router.put('/topics/:id', topic.updateUser)
-router.delete('/topics/:id', topic.deleteUser)
+router.get('/topics', topic.getAllTopics)
+router.get('/topics/create', topic.newTopic)
+router.post('/topics/create', topic.createTopic)
+router.get('/topics/show/:id', topic.getTopicById)
+router.get('/topics/edit/:id', topic.updateTopic)
+router.get('/topics/delete/:id', topic.deleteTopic)
 
 module.exports = router

@@ -7,11 +7,13 @@
         <label for="content" class="form-label">Content</label>
         <textarea class="form-control" id="content" rows="3" name="content"></textarea>
     </div>
+    <div class="mb-3">
     <select class="form-select" name="subject" required>
         <option selected>Choose one</option>
         {{#each topics}}
             <option value="{{subjectId}}">{{subject}}</option>
         {{/each}}
     </select>
+    </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
