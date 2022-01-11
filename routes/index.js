@@ -21,7 +21,7 @@ router.post("/", function (req, res, next) {
 })
 //routes for users
 router.get('/users', authentication, user.getAllUsers)
-router.post('/users', authentication, user.createUser)
+router.post('/users/register', user.createUser)
 router.get('/users/register', user.registerUser)
 router.get('/users/show/:id', authentication, user.getUserById)
 router.get('/users/edit/:id', authentication, user.updateUser)

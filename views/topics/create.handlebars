@@ -1,4 +1,4 @@
-<form>
+<form action="/topics/create" method="post">
     <div class="mb-3">
         <label for="tittle" class="form-label">Tittle</label>
         <input type="text" class="form-control" id="tittle" name="tittle" required>
@@ -10,8 +10,8 @@
     <div class="mb-3">
     <select class="form-select" name="subject" required>
         <option selected>Choose one</option>
-        {{#each topics}}
-            <option value="{{subjectId}}">{{subject}}</option>
+        {{#each subjects}}
+            <option value="{{id}}">{{description}}</option>
         {{/each}}
     </select>
     </div>

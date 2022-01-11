@@ -45,7 +45,7 @@ const getSubjectById = async (req, res) => {
         let subjects = [];
         subjects.push(subject.dataValues);
         const object = {
-            mapSubject: subject.map(data => {
+            mapSubject: subjects.map(data => {
                 return {
                     id: data.id,
                     description: data.description,

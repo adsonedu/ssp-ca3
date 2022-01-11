@@ -1,13 +1,23 @@
 const Topic = require('../models/topic');
 const db = require('../database/database');
 const topicController = Topic(db.sequelize, db.Sequelize);
-const subjectController = require('../controllers/SubjectController');
-const userController = require('../controllers/UserController');
+const Subject = require('../models/subject');
+const subjectController = Subject(db.sequelize, db.Sequelize);
+const User = require('../models/subject');
+const userController = User(db.sequelize, db.Sequelize);
 
 const newTopic = async (req, res) => {
     try {
-        const subjects = subjectController.getAllSubjects(req, res);
-        return res.render('./topics/create', {subjects: subjects});
+        const subjects = await subjectController.findAll();
+        const object = {
+            mapSubjects: subjects.map(data => {
+                return {
+                    id: data.id,
+                    description: data.description,
+                }
+            })
+        }
+        return res.render('./topics/create', {subjects: object.mapSubjects});
     } catch (error) {
         return res.status(500).send(error.message);
     }
@@ -31,8 +41,8 @@ const getAllTopics = async (req, res) => {
                     id: data.id,
                     tittle: data.tittle,
                     content: data.content,
-                    user: userController.getUserById(data.userId),
-                    subject: subjectController.getSubjectById(data.subjectId),
+                    user: userController.findByPk(data.userId),
+                    subject: subjectController.findByPk(data.subjectId),
                 }
             })
         }
@@ -50,13 +60,13 @@ const getTopicById = async (req, res) => {
         let topics = [];
         topics.push(topic.dataValues);
         const object = {
-            mapTopic: topic.map(data => {
+            mapTopic: topics.map(data => {
                 return {
                     id: data.id,
                     tittle: data.tittle,
                     content: data.content,
-                    user: userController.getUserById(data.userId),
-                    subject: subjectController.getSubjectById(data.subjectId),
+                    user: data.userId,
+                    subject: data.subjectId,
                 }
             })
         }
@@ -85,8 +95,8 @@ const updateTopic = async (req, res) => {
                         id: data.id,
                         tittle: data.tittle,
                         content: data.content,
-                        user: userController.getUserById(data.userId),
-                        subject: subjectController.getSubjectById(data.subjectId),
+                        user: userController.findByPk(data.userId),
+                        subject: subjectController.findByPk(data.subjectId),
                     }
                 })
             }
